@@ -1,10 +1,10 @@
-package org.bu01.globalrecruitmentserver;
+package org.bu01.database;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GlobalrecruitmentserverApplicationTests {
+class DatabaseApplicationTests {
 
 	@Test
 	void contextLoads() {
