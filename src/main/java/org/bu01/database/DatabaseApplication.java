@@ -1,13 +1,13 @@
-package org.bu01.globalrecruitmentserver;
+package org.bu01.database;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GlobalrecruitmentserverApplication {
+public class DatabaseApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GlobalrecruitmentserverApplication.class, args);
+		SpringApplication.run(DatabaseApplication.class, args);
 	}
 
 }
