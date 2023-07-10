@@ -37,7 +37,7 @@ public class OrganizationController {
         return new ResponseEntity<>("Create successfully!", HttpStatus.OK);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     List<Organization> getOrganization(){
         return repository.findAll();
     }

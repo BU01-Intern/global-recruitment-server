@@ -1,8 +1,5 @@
 package org.bu01.database.dto;
 
-
-import org.bu01.database.entities.Organization;
-
 import java.util.Date;
 import java.util.UUID;
 
