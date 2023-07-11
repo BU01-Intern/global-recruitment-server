@@ -31,6 +31,10 @@ public class Organization {
     @Column(name = "effective_end_date")
     private Date effectiveEndDate;
 
+
+    @OneToOne(mappedBy = "organization_id")
+    private RecruitmentOrganization recruitmentOrganization;
+
     public Organization() {
     }
 
