@@ -41,4 +41,6 @@ public class OrganizationController {
     List<Organization> getOrganization(){
         return repository.findAll();
     }
+
+
 }
