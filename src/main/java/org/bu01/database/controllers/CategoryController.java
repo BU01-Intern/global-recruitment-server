@@ -22,7 +22,7 @@ public class CategoryController {
     @Autowired
     private CategoryTypeRepository categoryTypeRepository;
 
-    @PostMapping("/create-category")
+    @PostMapping("/create")
     ResponseEntity<?> createCategory(@RequestBody CategoryDto.RequestCategory category){
         if(categoryRepository.existsByCode(category.getCode())){
             return new ResponseEntity<>("Code existed!", HttpStatus.BAD_REQUEST);
@@ -53,7 +53,7 @@ public class CategoryController {
         return new ResponseEntity<>("Created!", HttpStatus.OK);
     }
 
-    @PutMapping("/update-category/{id}")
+    @PutMapping("/update/{id}")
     ResponseEntity<?> updateCategory(@PathVariable UUID id, @RequestBody CategoryDto.RequestCategory category){
         if(categoryRepository.existsById(id)){
             Category existCategory = categoryRepository.findById(id).get();
@@ -73,7 +73,7 @@ public class CategoryController {
         return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/remove-category/{id}")
+    @DeleteMapping("/remove/{id}")
     ResponseEntity<?> removeCategory(@PathVariable UUID id){
         if(categoryRepository.existsById(id)){
             categoryRepository.deleteById(id);
@@ -82,12 +82,12 @@ public class CategoryController {
         return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/get-categories")
+    @GetMapping("/get-all")
     List<Category> getListCategories(){
         return categoryRepository.findAll();
     }
 
-    @GetMapping("/get-category-type")
+    @GetMapping("/get-all-types")
     List<CategoryType> getListCategoryType(){
         return categoryTypeRepository.findAll();
     }
