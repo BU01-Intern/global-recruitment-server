@@ -12,4 +12,6 @@ public interface CategoryTypeRepository extends JpaRepository<CategoryType, UUID
     CategoryType getCategoryTypeByName(String name);
 
     boolean existsByCode(String code);
+
+    CategoryType findCategoryTypeById(UUID id);
 }
