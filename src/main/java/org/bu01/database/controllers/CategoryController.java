@@ -82,6 +82,25 @@ public class CategoryController {
         return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
     }
 
+    @PutMapping("/update-category-type/{id}")
+    ResponseEntity<?> updateCategoryType(@PathVariable UUID id, @RequestBody CategoryType categoryType){
+        if(categoryRepository.existsById(id)){
+            CategoryType existedCategoryType = categoryTypeRepository.findCategoryTypeById(id);
+            existedCategoryType.setName(categoryType.getName());
+            existedCategoryType.setCode(categoryType.getCode());
+            return new ResponseEntity<>("Updated!",HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/remove-category-type/{id}")
+    ResponseEntity<?> removeCategoryType(@PathVariable UUID id){
+        if(categoryTypeRepository.existsById(id)){
+            categoryTypeRepository.deleteById(id);
+            return new ResponseEntity<>("Removed!",HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
+    }
     @GetMapping("/get-all")
     List<Category> getListCategories(){
         return categoryRepository.findAll();
