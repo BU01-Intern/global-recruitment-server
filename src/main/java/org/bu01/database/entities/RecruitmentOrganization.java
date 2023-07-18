@@ -30,19 +30,20 @@ public class RecruitmentOrganization {
     @Column(name = "office_address", nullable = false)
     private String officeAddress;
 
-    @Column(name = "recruitment_clues_full_name", nullable = false)
-    private String recruitmentCluesFullName;
-
     @Column(name = "recruitment_clues", nullable = false)
     private String recruitmentClues;
 
     @Column(name = "recruitment_clues_phone", nullable = false)
     private String recruitmentCluesPhone;
 
+    @Column(name = "recruitment_clues_email", nullable = false)
+    private String recruitmentCluesEmail;
+
     @Column(name = "information", columnDefinition = "text")
     private String information;
 
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization_id;
 
@@ -105,14 +106,6 @@ public class RecruitmentOrganization {
         this.officeAddress = officeAddress;
     }
 
-    public String getRecruitmentCluesFullName() {
-        return recruitmentCluesFullName;
-    }
-
-    public void setRecruitmentCluesFullName(String recruitmentCluesFullName) {
-        this.recruitmentCluesFullName = recruitmentCluesFullName;
-    }
-
     public String getRecruitmentClues() {
         return recruitmentClues;
     }
@@ -139,6 +132,14 @@ public class RecruitmentOrganization {
 
     public Organization getOrganization_id() {
         return organization_id;
+    }
+
+    public String getRecruitmentCluesEmail() {
+        return recruitmentCluesEmail;
+    }
+
+    public void setRecruitmentCluesEmail(String recruitmentCluesEmail) {
+        this.recruitmentCluesEmail = recruitmentCluesEmail;
     }
 
     public void setOrganization_id(Organization organization_id) {
