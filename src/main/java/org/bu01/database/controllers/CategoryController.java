@@ -64,7 +64,6 @@ public class CategoryController {
                 existCategory.setExpiredDate(category.getExpiredDate());
                 existCategory.setDescription(category.getDescription());
                 existCategory.setCategoryType(categoryTypeRepository.getCategoryTypeByName(category.getCategoryType()));
-
                 categoryRepository.save(existCategory);
                 return new ResponseEntity<>("Updated!",HttpStatus.OK);
 
@@ -88,6 +87,7 @@ public class CategoryController {
             CategoryType existedCategoryType = categoryTypeRepository.findCategoryTypeById(id);
             existedCategoryType.setName(categoryType.getName());
             existedCategoryType.setCode(categoryType.getCode());
+            categoryTypeRepository.save(existedCategoryType);
             return new ResponseEntity<>("Updated!",HttpStatus.OK);
         }
         return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
