@@ -47,7 +47,17 @@ public class OrganizationController {
         repository.save(newOrg);
         return new ResponseEntity<>("Create successfully!", HttpStatus.OK);
     }
-
+    @GetMapping("/get-treeOrg/{name}")
+    public ResponseEntity<?> getTreeOrg(@PathVariable String name) {
+        if(repository.existsByNameIgnoreCase(name)) {
+            Organization parentOrg = repository.getByNameIgnoreCase(name);
+            List<Organization> treeOrg = new ArrayList<>();
+            //treeOrg.add(parentOrg.getName());
+            treeOrg.add(parentOrg);
+            return new ResponseEntity<>(treeOrg, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Does not exist", HttpStatus.BAD_REQUEST);
+    }
     @GetMapping("/get-all")
     List<Organization> getOrganization(){
         return repository.findAll();
