@@ -2,6 +2,7 @@ package org.bu01.database.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -30,7 +31,12 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "category_type_id",nullable = false)
     private CategoryType categoryType;
-
+    @OneToMany(mappedBy = "recruitmentType")
+    private List<RecruitmentTimelineInformation> recruitmentTimelineInfo;
+    @OneToMany(mappedBy = "meetingType")
+    private List<Meeting> meeting;
+    @OneToMany(mappedBy = "recruitmentType")
+    private List<RecruitmentInformation> recruitmentInformation;
     public Category() {
     }
 

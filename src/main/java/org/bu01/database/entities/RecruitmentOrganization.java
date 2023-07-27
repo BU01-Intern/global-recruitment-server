@@ -2,6 +2,7 @@ package org.bu01.database.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -41,7 +42,8 @@ public class RecruitmentOrganization {
 
     @Column(name = "information", columnDefinition = "text")
     private String information;
-
+    @OneToMany(mappedBy = "recruitmentOrganizationId")
+    private List<RecruitmentTimelineInformation> recruitmentTimelineInfo;
 
     @OneToOne
     @JoinColumn(name = "organization_id", nullable = false)

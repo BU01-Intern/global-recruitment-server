@@ -1,5 +1,8 @@
 package org.bu01.database.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -14,11 +17,11 @@ public class Organization {
 
     @Column(name = "name", nullable = false)
     private String name;
-
+    @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_id")
     public Organization parentId;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "parentId")
     private Set<Organization> children = new HashSet<Organization>();
 
@@ -84,5 +87,21 @@ public class Organization {
 
     public void setEffectiveEndDate(Date effectiveEndDate) {
         this.effectiveEndDate = effectiveEndDate;
+    }
+
+    public Set<Organization> getChildren() {
+        return children;
+    }
+
+    public void setChildren(Set<Organization> children) {
+        this.children = children;
+    }
+
+    public RecruitmentOrganization getRecruitmentOrganization() {
+        return recruitmentOrganization;
+    }
+
+    public void setRecruitmentOrganization(RecruitmentOrganization recruitmentOrganization) {
+        this.recruitmentOrganization = recruitmentOrganization;
     }
 }

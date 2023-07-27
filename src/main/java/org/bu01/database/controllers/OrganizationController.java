@@ -41,20 +41,25 @@ public class OrganizationController {
         newOrg.setName(organization.getName());
         newOrg.setEffectiveEndDate(organization.getEffectiveEndDate());
         newOrg.setEffectiveStartDate(organization.getEffectiveStartDate());
-        if(repository.existsById(organization.getParentId())){
-            newOrg.setParentId(repository.findAllById(organization.getParentId()));
+        if(organization.getParentId() != null) {
+            UUID parentId = UUID.fromString(organization.getParentId());
+            if (repository.existsById(parentId)) {
+                newOrg.setParentId(repository.getReferenceById(parentId));
+            } else {
+                newOrg.setParentId(null);
+            }
+        } else {
+            newOrg.setParentId(null);
         }
         repository.save(newOrg);
         return new ResponseEntity<>("Create successfully!", HttpStatus.OK);
     }
+
     @GetMapping("/get-treeOrg/{name}")
     public ResponseEntity<?> getTreeOrg(@PathVariable String name) {
         if(repository.existsByNameIgnoreCase(name)) {
             Organization parentOrg = repository.getByNameIgnoreCase(name);
-            List<Organization> treeOrg = new ArrayList<>();
-            //treeOrg.add(parentOrg.getName());
-            treeOrg.add(parentOrg);
-            return new ResponseEntity<>(treeOrg, HttpStatus.OK);
+            return new ResponseEntity<>(parentOrg, HttpStatus.OK);
         }
         return new ResponseEntity<>("Does not exist", HttpStatus.BAD_REQUEST);
     }
